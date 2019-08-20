@@ -11,17 +11,12 @@ dependencies {
 }
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    compileSdkVersion 28
+    buildToolsVersion "28.0.1"
 
     defaultConfig {
-        minSdkVersion 9
-    }
 
-    buildTypes {
-        debug {
-            testCoverageEnabled = true
-        }
+        minSdkVersion 19
     }
 
     sourceSets {
@@ -30,27 +25,4 @@ android {
             res.srcDirs = ['res']
         }
     }
-
-    lintOptions {
-        abortOnError false
-    }
 }
-
-// When testing on Travis CI,
-// connectedCheck task doesn't output logs for more than 10 minutes often,
-// which causes build failure.
-// To avoid this, we change the log level for test tasks.
-// Test tasks for buildTypes will be defined on evaluation phase,
-// so do it on afterEvaluate.
-afterEvaluate { project ->
-    tasks.withType(VerificationTask) {
-        logging.level = LogLevel.INFO
-    }
-}
-
-apply plugin: 'com.github.kt3k.coveralls'
-
-coveralls.jacocoReportPath = 'build/reports/coverage/debug/report.xml'
-
-// This is from 'https://github.com/chrisbanes/gradle-mvn-push'
-apply from: "${rootDir}/gradle/gradle-mvn-push.gradle"

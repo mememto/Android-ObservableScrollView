@@ -21,9 +21,10 @@ subprojects {
     buildscript {
         repositories {
             mavenCentral()
+            google()
         }
         dependencies {
-            classpath 'com.android.tools.build:gradle:1.5.0'
+            classpath 'com.android.tools.build:gradle:3.4.2'
             classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.1.0'
         }
     }
