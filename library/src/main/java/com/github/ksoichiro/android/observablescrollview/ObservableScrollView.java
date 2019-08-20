@@ -40,7 +40,7 @@ public class ObservableScrollView extends ScrollView implements Scrollable {
     // Fields that don't need to be saved onSaveInstanceState
     private ObservableScrollViewCallbacks mCallbacks;
     private List<ObservableScrollViewCallbacks> mCallbackCollection;
-    private ScrollState mScrollState;
+    ScrollState mScrollState;
     private boolean mFirstScroll;
     private boolean mDragging;
     private boolean mIntercepted;
@@ -133,6 +133,7 @@ public class ObservableScrollView extends ScrollView implements Scrollable {
             case MotionEvent.ACTION_CANCEL:
                 mIntercepted = false;
                 mDragging = false;
+                Log.e("mScrollState","x: "+mScrollState);
                 dispatchOnUpOrCancelMotionEvent(mScrollState);
                 break;
             case MotionEvent.ACTION_MOVE:
